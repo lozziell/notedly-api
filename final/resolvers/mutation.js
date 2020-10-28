@@ -118,6 +118,7 @@ module.exports = {
       );
     }
   },
+  
   signUp: async (parent, { username, email, password }, { models }) => {
     // normalize email address
     email = email.trim().toLowerCase();

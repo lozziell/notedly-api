@@ -33,15 +33,14 @@ module.exports = {
 			throw new Error('Error creating account');
 		}
 	},
-	signIn: async (parent, { username, email, password }, { models }) => {
+	// remove username from arguments before email
+	signIn: async (parent, { email, password }, { models }) => {
 		if (email) {
 			//normalise email address
 			email = email.trim().toLowerCase();
 		}
-
-		const user = await models.User.findOne({
-			$or: [{ email }, { username }]
-		});
+		// remove username from here after ({ $or: [{ email }, { username }]
+		const user = await models.User.findOne({ email });
 		//if no iser found, throw an error
 		if (!user) {
 			throw new AuthenticationError('Error signing in');

@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema(
 	{
 		username: {
 			type: String,
+			// changed to false to test - no difference
 			required: true,
 			index: { unique: true }
 		},
